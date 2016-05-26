@@ -167,7 +167,7 @@ fig=None
 for p,c,l in zip(pos,args.color,args.posterior):
     X = p[params].view(float).reshape(-1, len(params))
     fig = corner.corner(X, bins=30, labels=[plot_label(param) for param in params],plot_datapoints=False,color=c,fig=fig,quantiles=[0.05,0.95],hist_kwargs={"normed":True},normed=True,truths=args.truths)#,extents=extents)
-    label=os.path.basename(l).replace('posterior_samples','').strip('_').strip('.dat')
+    label=os.path.basename(l).replace('posterior_samples','').strip('_').replace('.dat','')
     legends.append(lines.Line2D([0,0], [1,0], color=c, label=label))
 
 plt.legend(handles=legends,loc='lower right', bbox_to_anchor=(1, len(params)-0.5))
